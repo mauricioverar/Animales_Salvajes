@@ -105,12 +105,21 @@ const reloadTable = () => {
 
   animales.forEach((p, i) => {
 
+    `
+            <div class="card text-white bg-secondary m-3">
+            <img type ="button "style="width: 10rem;" src="${animal.Img}" class="card-img-top" data-bs-toggle="modal" data-bs-target="#${animal.Nombre}-${i}">
+            <div class="card-body p-1" onclick="playSounds('${animal.Sonido}')">
+            <a href="#"><img class="p-1" height="30rem" src="./assets/imgs/audio.svg"/></a>
+            </div>
+            </div>
+            `
+
     animalesTemplate.innerHTML += `
         <div class="px-3 pb-2 animal" nombre="${p.getNombre()}">
             <div class="card" style="width:200px;height:500px;">
-                <img type="button" data-bs-toggle="modal"
+                <img type="button" data-bs-toggle="modal" data-bs-target="#${p.getNombre()}-${i}"
                 src="${p.getImg()}"
-                class="card-img-top" id="foto">
+                class="card-img-top">
                 <div class="card-body">
                     <h4 class="card-title">${p.getNombre()}</h4>
                     <hr class="w-20 mx-auto">
@@ -122,7 +131,37 @@ const reloadTable = () => {
         </div>
         `;
   });
-  
+
+  const modal = document.getElementById('modal');
+    modal.innerHTML = "";
+    animales.forEach((animal, i) => {
+        modal.innerHTML +=
+            `
+        <!-- Modal ${animal.getNombre()} - ${i} -->
+        <div class="modal fade" id="${animal.getNombre()}-${i}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered w-25 role=document">
+            <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">${animal.getNombre()}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="${animal.getImg()}" class="img-fluid">
+                <hr>
+                <h5>Edad</h5>
+                <p>${animal.getEdad()}</p>
+                <hr>
+                <h5>Comentarios</h5>
+                <p>${animal.getComentarios()}</p> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+            </div>
+        </div>
+        </div>
+        `
+    })
 
 };
 
