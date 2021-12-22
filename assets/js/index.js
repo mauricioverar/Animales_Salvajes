@@ -45,6 +45,10 @@ document.getElementById("animal").addEventListener("click", () => {
             const {animales} = await fauna.getData();
             const imagenesPjTemplate  = `url(./assets/imgs/${animales[i].imagen})`
             document.getElementById("preview").style.backgroundImage = imagenesPjTemplate 
+            // document.getElementById("preview").setAttribute(
+            //     "src",
+            //     `./assets/imgs/${animales[i].imagen}`
+            //   )
         }
         
     })()
@@ -55,10 +59,14 @@ document.getElementById("btnRegistrar").addEventListener("click", () => {
   let edad = document.getElementById("edad");
   let previewElement = document.getElementById("preview");
   let imagenSrcBg = previewElement.style.backgroundImage;
+  
+// let imagenSrcBg = previewElement.setAttribute
   let imgSrc = imagenSrcBg.slice(5, imagenSrcBg.length - 2);
-
+  //console.log(animal.value)
 
   let comentarios = document.getElementById("comentarios");  
+
+
 
 
 
@@ -88,16 +96,24 @@ document.getElementById("btnRegistrar").addEventListener("click", () => {
         
     
 
+    if (edad.value && animal.value && comentarios.value) {//exito
   
-  if (edad.value && animal.value && comentarios.value && imagenSrcBg) {//exito
+//   if (edad.value && animal.value && comentarios.value && imagenSrcBg) {//exito
         animales.push(nuevoAnimal)
         animal.selectedIndex = 0
         edad.selectedIndex = 0
         previewElement.style.backgroundImage = "none"
-        imagenSrcBg = previewElement.style.backgroundColor = "#343a40!important"
+        // previewElement.setAttribute = "none"
+
+         imagenSrcBg = previewElement.style.backgroundColor = "#343a40!important"
+        //imagenSrcBg = previewElement.style.backgroundImage = "#343a40"
+
+        // imagenSrcBg = previewElement.setAttribute = "#343a40!important"
+
         comentarios.value = ""
         reloadTable()
     } else {
+        console.log(edad.value, animal.value, comentarios.value, imgSrc)
         alert("falta dato")
     }
 });
