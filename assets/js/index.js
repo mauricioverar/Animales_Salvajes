@@ -43,7 +43,7 @@ document.getElementById("animal").addEventListener("click", () => {
     ( async () =>{
         if (animal.value != 'Seleccione un animal'){
             const {animales} = await fauna.getData();
-            const imagenesPjTemplate  = `url(assets/imgs/${animales[i].imagen})`
+            const imagenesPjTemplate  = `url(./assets/imgs/${animales[i].imagen})`
             document.getElementById("preview").style.backgroundImage = imagenesPjTemplate 
         }
         
