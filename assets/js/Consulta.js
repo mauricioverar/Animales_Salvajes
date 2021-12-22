@@ -1,4 +1,5 @@
 let fauna = (() => {
+    // alert(location.port)
     var puerto = location.port;
     const url = `http://localhost:${puerto}/animales.json`
 

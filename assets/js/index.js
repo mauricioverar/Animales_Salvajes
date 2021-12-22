@@ -13,8 +13,11 @@ let sonido
 
 document.getElementById("animal").addEventListener("click", () => {
     const pj = document.getElementById("animal").value;
+    
+    
 
     switch (animal.value) {
+        
         case "Aguila":
         i = 4
         break;
@@ -40,7 +43,7 @@ document.getElementById("animal").addEventListener("click", () => {
     ( async () =>{
         if (animal.value != 'Seleccione un animal'){
             const {animales} = await fauna.getData();
-            const imagenesPjTemplate  = `url(/assets/imgs/${animales[i].imagen})`
+            const imagenesPjTemplate  = `url(assets/imgs/${animales[i].imagen})`
             document.getElementById("preview").style.backgroundImage = imagenesPjTemplate 
         }
         
@@ -104,15 +107,6 @@ const reloadTable = () => {
   animalesTemplate.innerHTML = "";
 
   animales.forEach((p, i) => {
-
-    `
-            <div class="card text-white bg-secondary m-3">
-            <img type ="button "style="width: 10rem;" src="${animal.Img}" class="card-img-top" data-bs-toggle="modal" data-bs-target="#${animal.Nombre}-${i}">
-            <div class="card-body p-1" onclick="playSounds('${animal.Sonido}')">
-            <a href="#"><img class="p-1" height="30rem" src="./assets/imgs/audio.svg"/></a>
-            </div>
-            </div>
-            `
 
     animalesTemplate.innerHTML += `
         <div class="px-3 pb-2 animal" nombre="${p.getNombre()}">
