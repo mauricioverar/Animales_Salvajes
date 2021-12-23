@@ -1,4 +1,4 @@
-import { Leon, Lobo, Oso, Serpiente, Aguila } from "./clases/hijos.js";
+import { Leon, Lobo, Oso, Serpiente, Aguila } from "./clases/animales.js";
 import fauna from "./Consulta.js";
 
 
