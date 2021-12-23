@@ -1,4 +1,6 @@
-import Animal from "./animal.js"
+import {Animal} from "./animal.js"
+
+// import Animal from "./animal.js"
 
 const reproductorAudio = document.getElementById("player")
 
