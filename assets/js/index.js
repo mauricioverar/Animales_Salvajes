@@ -45,6 +45,8 @@ document.getElementById("animal").addEventListener("click", () => {
             const {animales} = await fauna.getData();
             const imagenesPjTemplate  = `url(./assets/imgs/${animales[i].imagen})`
             document.getElementById("preview").style.backgroundImage = imagenesPjTemplate 
+        console.log(animales[i].imagen)
+
             // document.getElementById("preview").setAttribute(
             //     "src",
             //     `./assets/imgs/${animales[i].imagen}`
@@ -100,6 +102,7 @@ document.getElementById("btnRegistrar").addEventListener("click", () => {
   
 //   if (edad.value && animal.value && comentarios.value && imagenSrcBg) {//exito
         animales.push(nuevoAnimal)
+        console.log(nuevoAnimal.getImg())
         animal.selectedIndex = 0
         edad.selectedIndex = 0
         previewElement.style.backgroundImage = "none"
