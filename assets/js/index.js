@@ -116,10 +116,11 @@ import {Leon, Lobo, Oso, Serpiente, Aguila} from "./animales.js";
             edad.selectedIndex = 0
             previewElement.style.backgroundImage = "none"
             // previewElement.setAttribute = "none"
-            imagenSrcBg = previewElement.style.backgroundColor = "#343a40!important"
+            //imagenSrcBg = previewElement.style.backgroundColor = "#343a40!important"
             //imagenSrcBg = previewElement.style.backgroundImage = "#343a40"
             // imagenSrcBg = previewElement.setAttribute = "#343a40!important"
             comentarios.value = ""
+            document.getElementById("preview").src = "./assets/imgs/lion.svg"
             reloadTable()
         } else {
             console.log(edad.value, animal.value, comentarios.value, imgSrc)
@@ -137,16 +138,19 @@ import {Leon, Lobo, Oso, Serpiente, Aguila} from "./animales.js";
 
         animalesTemplate.innerHTML += `
             <div class="px-3 pb-2 animal" nombre="${animal.getNombre()}">
-                <div class="card" style="width:200px;height:500px;">
-                    <img type="button" data-bs-toggle="modal" data-bs-target="#${animal.getNombre()}-${i}"
+                <div class="card" style="width:200px;height:240px;">
+                    <img  style="width:200px;height:240px;" type="button" data-bs-toggle="modal" data-bs-target="#${animal.getNombre()}-${i}"
                     src="${animal.getImg()}"
                     class="card-img-top">
                     <div class="card-body">
-                        <h4 class="card-title">${animal.getNombre()}</h4>
+                    <!-- <h4 class="card-title">${animal.getNombre()}</h4>
                         <hr class="w-20 mx-auto">
                         <h6 class="card-text">Edad: ${animal.getEdad()}</h6>
-                        <h6 class="card-text">Comentarios: <span class="text-danger"> ${animal.getComentarios()}</span></h6>
-                        <button class="btn btn-outline-warning" onclick="activarAudio('${i}')"> Audio</button>
+                        <h6 class="card-text">Comentarios: <span class="text-danger"> ${animal.getComentarios()}</span></h6> -->
+                        <!-- <button class="btn btn-outline-warning" onclick="activarAudio('${i}')"> <img class="p-1" height="30rem" src="./assets/imgs/audio.svg"/> </button> -->
+                        <div class="card-body p-1" onclick="activarAudio('${i}')">
+                            <a href="#"><img class="p-1" height="30rem" src="./assets/imgs/audio.svg"/></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -161,22 +165,22 @@ import {Leon, Lobo, Oso, Serpiente, Aguila} from "./animales.js";
             <div class="modal fade" id="${animal.getNombre()}-${i}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered w-25 role=document">
                 <div class="modal-content bg-dark text-white">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">${animal.getNombre()}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="${animal.getImg()}" class="img-fluid">
-                    <hr>
-                    <h5>Edad</h5>
-                    <p>${animal.getEdad()}</p>
-                    <hr>
-                    <h5>Comentarios</h5>
-                    <p>${animal.getComentarios()}</p> 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
+                    <!-- <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">${animal.getNombre()}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div> -->
+                    <div class="modal-body" style="text-align:center;">
+                        <img src="${animal.getImg()}" class="img-fluid">
+                        <hr>
+                        <!-- <h5>Edad</h5> -->
+                        <p>${animal.getEdad()}</p>
+                        <hr>
+                        <h5>Comentarios</h5>
+                        <p>${animal.getComentarios()}</p> 
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div> -->
                 </div>
             </div>
             </div>
