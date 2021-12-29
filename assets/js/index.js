@@ -1,7 +1,10 @@
 //importar datos de animales.js
 import {Leon, Lobo, Oso, Serpiente, Aguila} from "./animales.js";
+//import Imagenes from "./Imagenes.js";
 //import { Leon, Lobo, Oso, Serpiente, Aguila } from "./clases/animales.js";
     //import fauna from "./Consulta.js";
+    animal.selectedIndex = 0
+    edad.selectedIndex = 0
     let animales = [];
     let nuevoAnimal; // podra cambiar su valor, pero solo vivirá en el bloque donde fue declarada
     let dire
@@ -24,12 +27,12 @@ import {Leon, Lobo, Oso, Serpiente, Aguila} from "./animales.js";
   */
 /////////////////////////////////////////////////////////////////////////////////
     
-
-    document.getElementById("animal").addEventListener("click", () => {
+    animal.addEventListener('change', async() => { // para cambio en cel mas rapido
+    //document.getElementById("animal").addEventListener("click", () => {
         const animalObjeto = Animales.find(
             (animal) => animal.name === document.getElementById("animal").value
           );
-          console.log('animalObjeto', animalObjeto) // {name, imagen, sonido}
+          //console.log('animalObjeto', animalObjeto) // {name, imagen, sonido}
           document.getElementById("preview").src = `./assets/imgs/${animalObjeto.imagen}`
         /*( async () =>{
             if (animal.value != 'Seleccione un animal'){
@@ -41,7 +44,9 @@ import {Leon, Lobo, Oso, Serpiente, Aguila} from "./animales.js";
         })()*/
     })
 
-    document.getElementById("btnRegistrar").addEventListener("click", () => {
+    btnRegistrar.addEventListener('click', async(evento) => {
+        evento.preventDefault();
+    //document.getElementById("btnRegistrar").addEventListener("click", () => {
     let animal = document.getElementById("animal");
     let edad = document.getElementById("edad");
     let previewElement = document.getElementById("preview");
@@ -56,7 +61,7 @@ import {Leon, Lobo, Oso, Serpiente, Aguila} from "./animales.js";
         //   if (edad.value && animal.value && comentarios.value && imagenSrcBg) {//exito
             //animales.push(nuevoAnimal)
 
-            console.log('animal.v',animal.value)
+            //console.log('animal.v',animal.value)
             
 
 
@@ -66,8 +71,7 @@ import {Leon, Lobo, Oso, Serpiente, Aguila} from "./animales.js";
             const animalCard = Animales.find(
                 (animal) => animal.name === document.getElementById("animal").value
               );
-              console.log('animal.n',animal.name)
-              console.log('animal.c',animalCard)
+              //console.log('animal.c',animalCard)
 
               // atributos del animal: propiedad nombre, propiedad imagen, etc
 
@@ -82,10 +86,10 @@ import {Leon, Lobo, Oso, Serpiente, Aguila} from "./animales.js";
               ];
 
 
-              console.log(animalAtt)
+              //console.log(animalAtt)
 
               
-              console.log( document.getElementById("preview").src )
+              //console.log( document.getElementById("preview").src )
 
               switch (animal.value) {
                 case "Aguila":
@@ -123,7 +127,7 @@ import {Leon, Lobo, Oso, Serpiente, Aguila} from "./animales.js";
             document.getElementById("preview").src = "./assets/imgs/lion.svg"
             reloadTable()
         } else {
-            console.log(edad.value, animal.value, comentarios.value, imgSrc)
+            // console.log(edad.value, animal.value, comentarios.value, imgSrc)
             alert("falta dato")
         }
     });
@@ -133,28 +137,21 @@ import {Leon, Lobo, Oso, Serpiente, Aguila} from "./animales.js";
     animalesTemplate.innerHTML = "";
 
     animales.forEach((animal, i) => {
-    console.log(i)
+    //console.log(i)
 
-
-        animalesTemplate.innerHTML += `
+    animalesTemplate.innerHTML += `
             <div class="px-3 pb-2 animal" nombre="${animal.getNombre()}">
-                <div class="card" style="width:200px;height:240px;">
-                    <img  style="width:200px;height:240px;" type="button" data-bs-toggle="modal" data-bs-target="#${animal.getNombre()}-${i}"
-                    src="${animal.getImg()}"
+                <div class="card" style="margin-left:-26px;width:160px;height:240px;">
+                    <img  style="width:160px;height:200px;" type="button" data-bs-toggle="modal" data-bs-target="#${animal.getNombre()}-${i}"
+                    src="${animal.Img}"
                     class="card-img-top">
-                    <div class="card-body">
-                    <!-- <h4 class="card-title">${animal.getNombre()}</h4>
-                        <hr class="w-20 mx-auto">
-                        <h6 class="card-text">Edad: ${animal.getEdad()}</h6>
-                        <h6 class="card-text">Comentarios: <span class="text-danger"> ${animal.getComentarios()}</span></h6> -->
-                        <!-- <button class="btn btn-outline-warning" onclick="activarAudio('${i}')"> <img class="p-1" height="30rem" src="./assets/imgs/audio.svg"/> </button> -->
-                        <div class="card-body p-1" onclick="activarAudio('${i}')">
-                            <a href="#"><img class="p-1" height="30rem" src="./assets/imgs/audio.svg"/></a>
-                        </div>
+                    <div class="card-body p-1  bg-secondary" onclick="activarAudio('${i}')">
+                        <a href="#${animal.getNombre()}-${i}"><img class="p-1" height="30rem" src="./assets/imgs/audio.svg"/></a>  
+                        <!-- <button> <img class="p-1" height="30rem" src="./assets/imgs/audio.svg"/> </button> -->
                     </div>
                 </div>
             </div>
-            `;
+        `;
     });
 
     const modal = document.getElementById('modal');
@@ -165,22 +162,19 @@ import {Leon, Lobo, Oso, Serpiente, Aguila} from "./animales.js";
             <div class="modal fade" id="${animal.getNombre()}-${i}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered w-25 role=document">
                 <div class="modal-content bg-dark text-white">
-                    <!-- <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">${animal.getNombre()}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div> -->
                     <div class="modal-body" style="text-align:center;">
                         <img src="${animal.getImg()}" class="img-fluid">
                         <hr>
-                        <!-- <h5>Edad</h5> -->
                         <p>${animal.getEdad()}</p>
                         <hr>
                         <h5>Comentarios</h5>
-                        <p>${animal.getComentarios()}</p> 
+                        <p style="
+                        margin-left:-4%;
+                        text-align:center;
+                        width:110%;
+                        word-wrap: break-word;
+                        ">${animal.getComentarios()}</p> 
                     </div>
-                    <!-- <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    </div> -->
                 </div>
             </div>
             </div>
